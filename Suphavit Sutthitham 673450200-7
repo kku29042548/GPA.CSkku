@@ -1,0 +1,80 @@
+namespace GPA.CSkku
+{
+    public partial class Form1 : Form
+    {
+        private University university = new University();
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button14_Click(object sender, EventArgs e) // Save Student Data
+        {
+            string studentId = textBox2.Text;
+            string name = textBox1.Text;
+            string major = textBox4.Text;
+            string advisorName = textBox5.Text;
+            double grade = double.Parse(textBox6.Text);
+
+            Professor advisor = university.FindProfessorByName(advisorName);
+            Student student = new Student(studentId, name, major, advisor, grade);
+
+            university.AddStudent(student);
+            if (advisor != null)
+            {
+                advisor.AddStudent(student);
+            }
+
+            MessageBox.Show("บันทึกข้อมูลนักศึกษาแล้ว");
+            ClearStudentTextBoxes();
+        }
+
+        private void button18_Click(object sender, EventArgs e) // Save Professor Data
+        {
+            string name = textBox7.Text;
+            string major = textBox10.Text;
+
+            Professor professor = new Professor(name, major);
+            university.AddProfessor(professor);
+
+            MessageBox.Show("บันทึกข้อมูลอาจารย์แล้ว");
+            ClearProfessorTextBoxes();
+        }
+
+        private void button1_Click(object sender, EventArgs e) // Add Highest GPAx
+        {
+            Student highestGradeStudent = university.GetHighestGradeStudent();
+            if (highestGradeStudent != null)
+            {
+                textBox11.Text = highestGradeStudent.StudentID;
+                textBox12.Text = highestGradeStudent.Name;
+                textBox13.Text = highestGradeStudent.Major;
+                textBox15.Text = highestGradeStudent.Advisor?.Name ?? "ไม่มี";
+                textBox16.Text = highestGradeStudent.Grade.ToString();
+            }
+            else
+            {
+                MessageBox.Show("ยังไม่มีข้อมูลนักศึกษา");
+            }
+        }
+
+        private void ClearStudentTextBoxes()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
+            textBox6.Clear();
+        }
+
+        private void ClearProfessorTextBoxes()
+        {
+            textBox7.Clear();
+            textBox8.Clear();
+            textBox9.Clear();
+            textBox10.Clear();
+        }
+    }
+}
