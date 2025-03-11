@@ -1,0 +1,135 @@
+namespace GPA.CSkku
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            // บันทึกข้อมูลนักเรียน (Save Student Data)
+            string studentName = textBox1.Text;
+            string studentId = textBox2.Text;
+            string studentFaculty = textBox3.Text;
+            string studentMajor = textBox4.Text;
+            string studentAdvisor = textBox5.Text;
+            string studentGPA = textBox6.Text;
+
+            // ตรวจสอบข้อมูล (Data validation)
+            if (string.IsNullOrEmpty(studentName) || string.IsNullOrEmpty(studentId))
+            {
+                MessageBox.Show("กรุณากรอกชื่อและรหัสนักเรียน", "ข้อผิดพลาด");
+                return;
+            }
+
+            // บันทึกข้อมูลลงในฐานข้อมูลหรือไฟล์ (Save data to database or file)
+            // (ส่วนนี้คุณจะต้องเขียนโค้ดเพื่อเชื่อมต่อกับฐานข้อมูลหรือไฟล์)
+            // ตัวอย่าง:
+            // SaveStudentDataToDatabase(studentName, studentId, ...);
+
+            // แสดงข้อความยืนยัน (Display confirmation message)
+            string message = $"ข้อมูลนักเรียน:\nชื่อ: {studentName}\nรหัส: {studentId}\nคณะ: {studentFaculty}\nสาขา: {studentMajor}\nอาจารย์ที่ปรึกษา: {studentAdvisor}\nGPA: {studentGPA}";
+            MessageBox.Show(message, "บันทึกข้อมูลนักเรียนแล้ว");
+
+            // ล้างข้อมูลใน TextBoxes (Clear TextBoxes)
+            ClearStudentTextBoxes();
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            // บันทึกข้อมูลอาจารย์ (Save Professor Data)
+            string professorName = textBox7.Text;
+            string professorId = textBox8.Text;
+            string professorFaculty = textBox9.Text;
+            string professorMajor = textBox10.Text;
+
+            // ตรวจสอบข้อมูล (Data validation)
+            if (string.IsNullOrEmpty(professorName) || string.IsNullOrEmpty(professorId))
+            {
+                MessageBox.Show("กรุณากรอกชื่อและรหัสอาจารย์", "ข้อผิดพลาด");
+                return;
+            }
+
+            // บันทึกข้อมูลลงในฐานข้อมูลหรือไฟล์ (Save data to database or file)
+            // (ส่วนนี้คุณจะต้องเขียนโค้ดเพื่อเชื่อมต่อกับฐานข้อมูลหรือไฟล์)
+            // ตัวอย่าง:
+            // SaveProfessorDataToDatabase(professorName, professorId, ...);
+
+            // แสดงข้อความยืนยัน (Display confirmation message)
+            string message = $"ข้อมูลอาจารย์:\nชื่อ: {professorName}\nรหัส: {professorId}\nคณะ: {professorFaculty}\nสาขา: {professorMajor}";
+            MessageBox.Show(message, "บันทึกข้อมูลอาจารย์แล้ว");
+
+            // ล้างข้อมูลใน TextBoxes (Clear TextBoxes)
+            ClearProfessorTextBoxes();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // เพิ่มนักเรียนที่มี GPAx สูงสุด (Add Student with Highest GPAx)
+            string studentId = textBox11.Text;
+            string studentName = textBox12.Text;
+            string studentFaculty = textBox13.Text;
+            string studentMajor = textBox14.Text;
+            string studentAdvisor = textBox15.Text;
+            string studentGPAx = textBox16.Text;
+
+            // ตรวจสอบข้อมูล (Data validation)
+            if (string.IsNullOrEmpty(studentId) || string.IsNullOrEmpty(studentGPAx))
+            {
+                MessageBox.Show("กรุณากรอกรหัสและ GPAx", "ข้อผิดพลาด");
+                return;
+            }
+
+            // เพิ่มข้อมูลลงในฐานข้อมูลหรือรายการ (Add data to database or list)
+            // (ส่วนนี้คุณจะต้องเขียนโค้ดเพื่อเพิ่มข้อมูลลงในฐานข้อมูลหรือรายการ)
+            // ตัวอย่าง:
+            // AddHighestGPAxStudent(studentId, studentName, ...);
+
+            // แสดงข้อความยืนยัน (Display confirmation message)
+            string message = $"เพิ่มนักเรียน GPAx สูงสุดแล้ว:\nรหัส: {studentId}\nชื่อ: {studentName}\nคณะ: {studentFaculty}\nสาขา: {studentMajor}\nอาจารย์ที่ปรึกษา: {studentAdvisor}\nGPAx: {studentGPAx}";
+            MessageBox.Show(message, "เพิ่มนักเรียน GPAx สูงสุดแล้ว");
+
+            // ล้างข้อมูลใน TextBoxes (Clear TextBoxes)
+            ClearHighestGPAxTextBoxes();
+        }
+
+        // ฟังก์ชันสำหรับล้างข้อมูลใน TextBoxes ของนักเรียน (Function to clear Student TextBoxes)
+        private void ClearStudentTextBoxes()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
+            textBox6.Clear();
+        }
+
+        // ฟังก์ชันสำหรับล้างข้อมูลใน TextBoxes ของอาจารย์ (Function to clear Professor TextBoxes)
+        private void ClearProfessorTextBoxes()
+        {
+            textBox7.Clear();
+            textBox8.Clear();
+            textBox9.Clear();
+            textBox10.Clear();
+        }
+
+        // ฟังก์ชันสำหรับล้างข้อมูลใน TextBoxes ของนักเรียน GPAx สูงสุด (Function to clear Highest GPAx TextBoxes)
+        private void ClearHighestGPAxTextBoxes()
+        {
+            textBox11.Clear();
+            textBox12.Clear();
+            textBox13.Clear();
+            textBox14.Clear();
+            textBox15.Clear();
+            textBox16.Clear();
+        }
+
+        // เหตุการณ์อื่นๆ ที่ไม่ได้ใช้ในตอนนี้ (Other unused events)
+        private void label13_Click(object sender, EventArgs e) {}
+        private void groupBox1_Enter(object sender, EventArgs e) {}
+        private void groupBox3_Enter(object sender, EventArgs e) {}
+        private void groupBox4_Enter(object sender, EventArgs e) {}
+    }
+}
